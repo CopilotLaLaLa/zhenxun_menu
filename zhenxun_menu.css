@@ -15,14 +15,21 @@
     --mfsize:20px;
     /* 功能项标题字体大小 */
     --ofsize:24px;
+    /* 主题背景颜色 */
+    --themebgcolor:#FE96000a;
+    /* 主题边框颜色 */
+    --themebordercolor:#FE9600;
     /* 备选颜色 */
     --testcolor:#FE9600;
 }
-.func{
-    background-color: #fe96000a !important;
+i{
+    margin-right: 5px;
 }
-.func > span:nth-child(2n){
-    border: 1px solid var(--testcolor) !important;
+.content > div{
+    background-color: var(--themebgcolor) !important;
+}
+.content > div > span:nth-child(2n){
+    border: 1px solid var(--themebordercolor) !important;
 }
 *{
     margin: 0;
@@ -39,25 +46,24 @@ body{
     font-size:var(--mfsize);
 }
 .wrapper{
-    position: relative;
-    padding: 8rem 1.5rem 1.5rem 1.5rem;
+    padding: 1.5rem 1.5rem 1.5rem 1.5rem;
     margin: 10px auto;
     width: 50%;
-    /* 瀑布流参数 */
-    columns: 12rem;
-    gap: 1rem;
     /* 背景图片入口 */
-    background-image: url("./res/img/bg1.jpg");
+    background-image: url("./res/img/bg3.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
     background-size: cover;
     border-radius: 25px;
     user-select: none;
 }
+.content {
+    /* 瀑布流参数 */
+    columns: 12rem;
+    gap: 1rem;
+}
 .des{
-    position: absolute;
-    top: 1.5rem;
-    left: 1.5rem;
-    height: 5.5rem;
-    width: calc(100% - 3rem);
+    margin-bottom: 1.5rem;
     background: var(--optcolor);
     box-shadow: 0px 0px 5px 0 rgb(31 38 135 / 37%);
     backdrop-filter: blur(var(--blur));
@@ -80,9 +86,10 @@ body{
 }
 .des > p{
     margin-left: 1.5rem;
-    margin-bottom: 5px;
+    margin-right: 1.5rem;
+    margin-bottom: 10px;
 }
-.wrapper > div{
+.content > div{
     position: relative;
     margin-bottom: 1rem;
     break-inside: avoid;
@@ -90,34 +97,39 @@ body{
     box-shadow: 0px 0px 5px 0 rgb(31 38 135 / 37%);
     backdrop-filter: blur(var(--blur));
     border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    /* border: 1px solid rgba( 255, 255, 255, 0.18 ); */
+    border: 1px solid var(--themebordercolor);
     overflow: hidden;
 }
-.wrapper > div::before{
+.content > div::before{
     content: '';
     position: absolute;
     height: 40px;
-    width: 100%;
+    width: 110%;
     display: block;
-    background: var(--titlecolor);
+    /* background: var(--titlecolor); */
+    background: var(--themebordercolor);
+    background-image: url(./res/img/texture.png);
     z-index: -1;
 }
 
-.wrapper > div > span{
+.content > div > span{
     margin: 0.4rem 0.6rem;
     display: block;
     padding:0.6rem 0.5rem 0.4rem 1rem;
+    /* border: 1px solid #9a9999; */
     border: 1px solid #d6d6d6;
     border-radius: 50px;
     backdrop-filter: blur(var(--blur));
     background: var(--itemcolor);
 }
 
-.wrapper > div > span:nth-child(1){
+.content > div > span:nth-child(1){
     margin: 0;
     border: none;
     border-radius: 0px;
     text-align: center;
+    color: white;
     font-size: var(--ofsize);
     line-height: 40px;
     height: 40px;
