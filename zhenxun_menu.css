@@ -1,6 +1,10 @@
 :root{
+    /* 整图背景颜色 (#bfd5ea) */
+    --bgcolor:#FFC8A8;
     /* 停用颜色 */
-    --bancolr:#b5b2b2;
+    --bancolor:#b5b2b2;
+    /* 禁用颜色 */
+    --stopcolor:red;
     /* 背景图高斯模糊 */
     --bgblur:6px;
     /* 插件框高斯模糊 */
@@ -8,7 +12,7 @@
     /* 插件背景色 */
     --itemcolor:hsla(0,0%,100%,.38);
     /* 标题背景色 */
-    --titlecolor:#ddddddb8;
+    --titlecolor:#8b2671;
     /* 标题正文 */
     --titletext:"功能总列表";
     /* 功能项背景色 */
@@ -19,10 +23,14 @@
     --ofsize:24px;
     /* 主题背景颜色 */
     --themebgcolor:#FE96000a;
+    /* 插件背景颜色 */
+    --pluginbgcolor:#FE9600;
     /* 主题边框颜色 */
     --themebordercolor:#FE9600;
     /* 备选颜色 */
     --testcolor:#FE9600;
+    /* 偶数列倾斜角 */
+    --cdeg:20deg
 }
 i{
     margin-right: 5px;
@@ -30,9 +38,15 @@ i{
 .content > div{
     background-color: var(--themebgcolor) !important;
 }
-.content > div > span:nth-child(2n){
+/* .content > div > span:nth-child(2n){
+    text-align: end;
     border: 1px solid var(--themebordercolor) !important;
+} */
+.content > div > span:nth-child(2n) > .splic::before{
+    /* transform: translate(10px, -75px) rotate(70deg); */
+    transform: translate(-90%, -90px) rotate(var(--cdeg));
 }
+
 *{
     margin: 0;
     padding: 0;
@@ -50,10 +64,9 @@ body{
 .wrapper{
     position: relative;
     padding: 1.5rem 1.5rem 1.5rem 1.5rem;
-    margin: 10px auto;
-    width: 50%;
+    margin: 0 auto;
+    width: 80%;
     border-radius: 25px;
-    overflow: hidden;
     user-select: none;
 }
 .wrapper::before{
@@ -64,12 +77,37 @@ body{
     width: 100%;
     height: 100%;
     /* 背景图片入口 */
-    background-image: url("./res/img/bg3.jpg");
-    filter: blur(var(--bgblur));
+    /* background-image: url("./res/img/bg3.jpg"); */
+    background-color: var(--bgcolor);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     z-index: -1;
+}
+
+.sider-left{
+    position: absolute;
+    top: 0;
+    left: 0%;
+    width: 60%;
+    height: 100%;
+    background-image: url(./res/img/sider_left_t.png);
+    background-color: var(--bgcolor);
+    background-repeat: no-repeat;
+    background-position: -70px center;
+    background-size: cover;
+}
+.sider-right{
+    position: absolute;
+    top: 0;
+    right: 0%;
+    width: 60%;
+    height: 100%;
+    background-image: url(./res/img/sider_right_t.png);
+    background-color: var(--bgcolor);
+    background-repeat: no-repeat;
+    background-position: 100px center;
+    background-size: cover;
 }
 .content {
     /* 瀑布流参数 */
@@ -92,6 +130,7 @@ body{
     width: 100%;
     display: block;
     background: var(--titlecolor);
+    color: white;
     text-align: center;
     z-index: -1;
 }
@@ -130,15 +169,35 @@ body{
 .content > div > span{
     margin: 0.4rem 0.6rem;
     display: block;
-    padding:0.6rem 0.5rem 0.4rem 1rem;
+    padding:0.6rem 1rem 0.4rem 1rem;
+    letter-spacing: 1px;
     /* border: 1px solid #9a9999; */
-    border: 1px solid #d6d6d6;
+    /* border: 1px solid #d6d6d6; */
+    border: 1px solid var(--themebordercolor);
+    /* text-shadow: 0px 0px 3px #fff; */
+
+    text-shadow: 0.5px 0.5px #fff;
+    /* text-shadow: 0.5px 0.5px #cb6346; */
     border-radius: 50px;
     backdrop-filter: blur(var(--blur));
     background: var(--itemcolor);
+    overflow: hidden;
 }
-
-.content > div > span:nth-child(1){
+.splic{
+    position: relative;
+    display: inline-block;
+}
+.splic::before{
+    content: '';
+    width: 12rem;
+    top: 0;
+    height: 200px;
+    position: absolute;
+    background: var(--pluginbgcolor);
+    transform: translate(-90%, -90px) rotate(70deg);
+    z-index: -1;
+}
+/* .content > div > span:nth-child(1){
     margin: 0;
     border: none;
     border-radius: 0px;
@@ -150,8 +209,43 @@ body{
     margin-bottom: 10px;
     padding: 0;
     background: none;
+    text-shadow: none;
+} */
+.content > div > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:40px
 }
-
+.content > div > div >span:nth-child(1){
+    color: white;
+    font-size: var(--ofsize);
+}
+.logo{
+    margin-left: 5px;
+    display: inline-block;
+    height: 100%;
+    width: 40px;
+}
+.logo > img{
+    width: 100%;
+    height: 100%;
+}
 .ban{
-    color: var(--bancolr);
+    color: var(--bancolor);
+    text-shadow: none;
+}
+del {
+    text-shadow: none;
+    color: var(--stopcolor);
+}
+.des-right,.content-right{
+    width: 64%;
+}
+.des-left{
+    margin-left: 36%;
+    width: auto;
+}
+.content-left{
+    margin-left: 36%;
 }
